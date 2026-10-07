@@ -2,8 +2,11 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  useLocation
 } from "react-router-dom";
+
+import { useEffect } from "react";
 
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
@@ -16,12 +19,21 @@ import Simulation from "./pages/Simulation";
 import ParallelYou from "./pages/ParallelYou";
 import Dashboard from "./pages/Dashboard";
 import Achievements from "./pages/Achievements";
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 function App() {
   return (
     <BrowserRouter>
 
       <Routes>
+        <ScrollToTop />
 
         {/* FIRST SCREEN */}
 
