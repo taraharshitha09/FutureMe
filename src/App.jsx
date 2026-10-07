@@ -5,7 +5,6 @@ import {
   Navigate,
   useLocation
 } from "react-router-dom";
-
 import { useEffect } from "react";
 
 import Auth from "./pages/Auth";
@@ -19,6 +18,7 @@ import Simulation from "./pages/Simulation";
 import ParallelYou from "./pages/ParallelYou";
 import Dashboard from "./pages/Dashboard";
 import Achievements from "./pages/Achievements";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -28,102 +28,27 @@ function ScrollToTop() {
 
   return null;
 }
+
 function App() {
   return (
     <BrowserRouter>
 
+      {/* ScrollToTop must be OUTSIDE Routes */}
+      <ScrollToTop />
+
       <Routes>
-        <ScrollToTop />
-
-        {/* FIRST SCREEN */}
-
-        <Route
-          path="/"
-          element={
-            <Navigate
-              to="/auth"
-              replace
-            />
-          }
-        />
-
-        {/* 01 — AUTH */}
-
-        <Route
-          path="/auth"
-          element={<Auth />}
-        />
-
-        {/* 02 — PROFILE */}
-
-        <Route
-          path="/profile"
-          element={<Profile />}
-        />
-
-        {/* 03 — DISCOVER INTERESTS */}
-
-        <Route
-          path="/discover"
-          element={<Discover />}
-        />
-
-        {/* 04 — BEST-FIT DOMAINS */}
-
-        <Route
-          path="/domains"
-          element={<Domains />}
-        />
-
-        {/* 05 — ROADMAP */}
-
-        <Route
-          path="/roadmap"
-          element={<Roadmap />}
-        />
-
-        {/* 06 — DAILY PLAN */}
-
-        <Route
-          path="/daily-plan"
-          element={<DailyPlan />}
-        />
-
-        {/* 07 — CONSISTENCY */}
-
-        <Route
-          path="/consistency"
-          element={<Consistency />}
-        />
-
-        {/* 08 — FUTURE SIMULATION */}
-
-        <Route
-          path="/simulation"
-          element={<Simulation />}
-        />
-
-        {/* 09 — PARALLEL YOU */}
-
-        <Route
-          path="/parallel-you"
-          element={<ParallelYou />}
-        />
-
-        {/* DASHBOARD */}
-
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
-
-        {/* ACHIEVEMENTS */}
-
-        <Route
-          path="/achievements"
-          element={<Achievements />}
-        />
-
+        <Route path="/" element={<Navigate to="/auth" replace />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/discover" element={<Discover />} />
+        <Route path="/domains" element={<Domains />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/daily-plan" element={<DailyPlan />} />
+        <Route path="/consistency" element={<Consistency />} />
+        <Route path="/simulation" element={<Simulation />} />
+        <Route path="/parallel-you" element={<ParallelYou />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/achievements" element={<Achievements />} />
       </Routes>
 
     </BrowserRouter>
