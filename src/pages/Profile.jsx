@@ -11,30 +11,24 @@ function Profile() {
   const savedProfile =
     JSON.parse(localStorage.getItem("futureMeProfile")) || {};
 
-  // Signup lo ichina name automatic ga vastundi
-  const [name, setName] = useState(
-    savedUser.name || ""
-  );
+  // Signup lo ichina exact name automatic ga vastundi
+  const [name, setName] = useState(savedUser.name || "");
 
-  // Age starting lo blank
-  const [age, setAge] = useState(
-    savedProfile.age || ""
-  );
+  // Age intentionally blank ga start avutundi
+  const [age, setAge] = useState("");
 
-  // Current status starting lo blank
-  const [status, setStatus] = useState(
-    savedProfile.status || ""
-  );
+  // Current status intentionally blank ga start avutundi
+  const [status, setStatus] = useState("");
 
-  // Education starting lo blank
-  const [education, setEducation] = useState(
-    savedProfile.education || ""
-  );
+  // Education intentionally blank ga start avutundi
+  const [education, setEducation] = useState("");
 
+  // Existing skills preserve chestunnam
   const [skills, setSkills] = useState(
     savedProfile.skills || []
   );
 
+  // Existing skill level preserve chestunnam
   const [level, setLevel] = useState(
     savedProfile.level || "Beginner"
   );
@@ -70,6 +64,7 @@ function Profile() {
     }
 
     const profile = {
+      // Signup name exact ga preserve chestunnam
       name: savedUser.name || name,
       age,
       status,
@@ -83,7 +78,7 @@ function Profile() {
       JSON.stringify(profile)
     );
 
-    // Keep signup name as the main user name
+    // Signup name main user name ga preserve chestunnam
     const updatedUser = {
       ...savedUser,
       name: savedUser.name || name
