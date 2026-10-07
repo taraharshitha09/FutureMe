@@ -11,18 +11,22 @@ function Profile() {
   const savedProfile =
     JSON.parse(localStorage.getItem("futureMeProfile")) || {};
 
+  // Signup lo ichina name automatic ga vastundi
   const [name, setName] = useState(
-  savedUser.name || ""
-);
+    savedUser.name || ""
+  );
 
+  // Age starting lo blank
   const [age, setAge] = useState(
     savedProfile.age || ""
   );
 
+  // Current status starting lo blank
   const [status, setStatus] = useState(
-    savedProfile.status || "CSE Student"
+    savedProfile.status || ""
   );
 
+  // Education starting lo blank
   const [education, setEducation] = useState(
     savedProfile.education || ""
   );
@@ -66,31 +70,31 @@ function Profile() {
     }
 
     const profile = {
-  name: savedUser.name || name,
-  age,
-  status,
-  education,
-  skills,
-  level
-};
+      name: savedUser.name || name,
+      age,
+      status,
+      education,
+      skills,
+      level
+    };
 
-localStorage.setItem(
-  "futureMeProfile",
-  JSON.stringify(profile)
-);
+    localStorage.setItem(
+      "futureMeProfile",
+      JSON.stringify(profile)
+    );
 
-// Keep the signup name as the main user name
-const updatedUser = {
-  ...savedUser,
-  name: savedUser.name || name
-};
+    // Keep signup name as the main user name
+    const updatedUser = {
+      ...savedUser,
+      name: savedUser.name || name
+    };
 
-localStorage.setItem(
-  "futureMeUser",
-  JSON.stringify(updatedUser)
-);
+    localStorage.setItem(
+      "futureMeUser",
+      JSON.stringify(updatedUser)
+    );
 
-navigate("/discover");
+    navigate("/discover");
   };
 
   return (
@@ -215,7 +219,7 @@ navigate("/discover");
                   type="number"
                   min="15"
                   max="70"
-                  placeholder="19"
+                  placeholder="Enter your age"
                   value={age}
                   onChange={(e) =>
                     setAge(e.target.value)
@@ -241,59 +245,63 @@ navigate("/discover");
                 }
               >
 
-                <option>
+                <option value="" disabled>
+                  Select your current status
+                </option>
+
+                <option value="CSE Student">
                   CSE Student
                 </option>
 
-                <option>
+                <option value="Engineering Student">
                   Engineering Student
                 </option>
 
-                <option>
+                <option value="Computer Science Graduate">
                   Computer Science Graduate
                 </option>
 
-                <option>
+                <option value="Recent Graduate">
                   Recent Graduate
                 </option>
 
-                <option>
+                <option value="Job Seeker">
                   Job Seeker
                 </option>
 
-                <option>
+                <option value="Working Professional">
                   Working Professional
                 </option>
 
-                <option>
+                <option value="Software Developer">
                   Software Developer
                 </option>
 
-                <option>
+                <option value="Freelancer">
                   Freelancer
                 </option>
 
-                <option>
+                <option value="Entrepreneur">
                   Entrepreneur
                 </option>
 
-                <option>
+                <option value="Startup Founder">
                   Startup Founder
                 </option>
 
-                <option>
+                <option value="Pursuing Higher Studies">
                   Pursuing Higher Studies
                 </option>
 
-                <option>
+                <option value="Researcher">
                   Researcher
                 </option>
 
-                <option>
+                <option value="Career Switcher">
                   Career Switcher
                 </option>
 
-                <option>
+                <option value="Exploring Careers">
                   Exploring Careers
                 </option>
 
@@ -316,35 +324,35 @@ navigate("/discover");
                 }
               >
 
-                <option value="">
+                <option value="" disabled>
                   Select your education
                 </option>
 
-                <option>
+                <option value="B.Tech / B.E">
                   B.Tech / B.E
                 </option>
 
-                <option>
+                <option value="B.Sc Computer Science">
                   B.Sc Computer Science
                 </option>
 
-                <option>
+                <option value="BCA">
                   BCA
                 </option>
 
-                <option>
+                <option value="MCA">
                   MCA
                 </option>
 
-                <option>
+                <option value="M.Tech">
                   M.Tech
                 </option>
 
-                <option>
+                <option value="Diploma">
                   Diploma
                 </option>
 
-                <option>
+                <option value="Other">
                   Other
                 </option>
 
