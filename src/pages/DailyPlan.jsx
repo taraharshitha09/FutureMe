@@ -11,17 +11,13 @@ function DailyPlan() {
 
   const roadmap = roadmaps[savedDomain.id];
 
-  const savedPlan =
-    JSON.parse(localStorage.getItem("futureMeDailyPlan")) || {};
-
-  const [dailyHours, setDailyHours] = useState(
-    savedPlan.dailyHours || 1
-  );
+  const [dailyHours, setDailyHours] = useState("");
 
   if (!roadmap) {
     return (
       <div className="daily-error">
         <h2>No roadmap selected.</h2>
+
         <button onClick={() => navigate("/domains")}>
           Choose a Domain
         </button>
@@ -33,31 +29,49 @@ function DailyPlan() {
     {
       value: 0.5,
       label: "30 MIN",
-      description: "Light but consistent"
+      description: "Light but consistent",
     },
     {
       value: 1,
       label: "1 HOUR",
-      description: "Balanced learning"
+      description: "Balanced learning",
     },
     {
       value: 2,
       label: "2 HOURS",
-      description: "Focused progress"
+      description: "Focused progress",
     },
     {
       value: 3,
       label: "3 HOURS",
-      description: "Fast progress"
+      description: "Fast progress",
     },
     {
       value: 4,
       label: "4+ HOURS",
-      description: "Intensive learning"
-    }
+      description: "Intensive learning",
+    },
   ];
 
+  /* =========================
+     WEEKLY PLAN
+  ========================= */
+
   const getPlan = () => {
+    // Nothing selected yet
+    if (!dailyHours) {
+      return [
+        ["Monday", "—", "—"],
+        ["Tuesday", "—", "—"],
+        ["Wednesday", "—", "—"],
+        ["Thursday", "—", "—"],
+        ["Friday", "—", "—"],
+        ["Saturday", "—", "—"],
+        ["Sunday", "—", "—"],
+      ];
+    }
+
+    // 30 MIN
     if (dailyHours === 0.5) {
       return [
         ["Monday", "Learn", "30 min"],
@@ -66,10 +80,11 @@ function DailyPlan() {
         ["Thursday", "Learn", "30 min"],
         ["Friday", "Practice", "30 min"],
         ["Saturday", "Mini Project", "30 min"],
-        ["Sunday", "Weekly Review", "30 min"]
+        ["Sunday", "Weekly Review", "30 min"],
       ];
     }
 
+    // 1 HOUR
     if (dailyHours === 1) {
       return [
         ["Monday", "Learn + Practice", "1 hr"],
@@ -78,10 +93,11 @@ function DailyPlan() {
         ["Thursday", "Learn + Coding", "1 hr"],
         ["Friday", "Theory + Problems", "1 hr"],
         ["Saturday", "Project Work", "1 hr"],
-        ["Sunday", "Revision + Review", "1 hr"]
+        ["Sunday", "Revision + Review", "1 hr"],
       ];
     }
 
+    // 2 HOURS
     if (dailyHours === 2) {
       return [
         ["Monday", "Learn + Practice", "2 hrs"],
@@ -90,10 +106,11 @@ function DailyPlan() {
         ["Thursday", "Learn + Coding", "2 hrs"],
         ["Friday", "Practice + Problems", "2 hrs"],
         ["Saturday", "Project Development", "2 hrs"],
-        ["Sunday", "Revision + Weekly Review", "2 hrs"]
+        ["Sunday", "Revision + Weekly Review", "2 hrs"],
       ];
     }
 
+    // 3 HOURS
     if (dailyHours === 3) {
       return [
         ["Monday", "Theory + Practice", "3 hrs"],
@@ -102,10 +119,11 @@ function DailyPlan() {
         ["Thursday", "Coding + Problems", "3 hrs"],
         ["Friday", "Practice + Revision", "3 hrs"],
         ["Saturday", "Project Development", "3 hrs"],
-        ["Sunday", "Project + Weekly Review", "3 hrs"]
+        ["Sunday", "Project + Weekly Review", "3 hrs"],
       ];
     }
 
+    // 4+ HOURS
     return [
       ["Monday", "Deep Learning", "4+ hrs"],
       ["Tuesday", "Coding + Practice", "4+ hrs"],
@@ -113,30 +131,40 @@ function DailyPlan() {
       ["Thursday", "Coding + Problems", "4+ hrs"],
       ["Friday", "Advanced Practice", "4+ hrs"],
       ["Saturday", "Project Development", "4+ hrs"],
-      ["Sunday", "Project + Review", "4+ hrs"]
+      ["Sunday", "Project + Review", "4+ hrs"],
     ];
   };
 
   const weeklyPlan = getPlan();
 
-  const weeklyHours = dailyHours * 7;
+  /* =========================
+     CALCULATIONS
+  ========================= */
 
-  const completionDays =
-    Math.ceil(
-      roadmap.totalHours / dailyHours
-    );
+  const weeklyHours = dailyHours ? dailyHours * 7 : 0;
 
-  const completionWeeks =
-    Math.ceil(completionDays / 7);
+  const completionDays = dailyHours
+    ? Math.ceil(roadmap.totalHours / dailyHours)
+    : 0;
+
+  const completionWeeks = dailyHours
+    ? Math.ceil(completionDays / 7)
+    : 0;
+
+  /* =========================
+     SAVE PLAN
+  ========================= */
 
   const savePlan = () => {
+    if (!dailyHours) return;
+
     const plan = {
       domain: savedDomain.id,
       dailyHours,
       weeklyHours,
       completionDays,
       completionWeeks,
-      weeklyPlan
+      weeklyPlan,
     };
 
     localStorage.setItem(
@@ -155,7 +183,9 @@ function DailyPlan() {
       <div className="daily-glow daily-glow-one"></div>
       <div className="daily-glow daily-glow-two"></div>
 
-      {/* NAV */}
+      {/* =========================
+          NAV
+      ========================= */}
 
       <nav className="daily-nav">
 
@@ -172,7 +202,9 @@ function DailyPlan() {
 
       <main className="daily-container">
 
-        {/* HEADER */}
+        {/* =========================
+            HEADER
+        ========================= */}
 
         <section className="daily-header">
 
@@ -192,16 +224,20 @@ function DailyPlan() {
 
         </section>
 
-        {/* TIME OPTIONS */}
+        {/* =========================
+            TIME OPTIONS
+        ========================= */}
 
         <section className="time-section">
 
           <div className="section-heading">
+
             <span>YOUR DAILY COMMITMENT</span>
 
             <small>
               Consistency matters more than intensity.
             </small>
+
           </div>
 
           <div className="time-options">
@@ -210,6 +246,7 @@ function DailyPlan() {
 
               <button
                 key={option.value}
+                type="button"
                 className={
                   dailyHours === option.value
                     ? "time-card active"
@@ -242,30 +279,40 @@ function DailyPlan() {
 
         </section>
 
-        {/* PLAN PREVIEW */}
+        {/* =========================
+            PLAN PREVIEW
+        ========================= */}
 
         <section className="plan-section">
 
           <div className="plan-heading">
 
             <div>
-              <span>YOUR PERSONALIZED PLAN</span>
+
+              <span>
+                YOUR PERSONALIZED PLAN
+              </span>
 
               <h2>
                 {roadmap.name}
               </h2>
+
             </div>
 
             <div className="weekly-hours">
+
               <strong>
-                {dailyHours === 4
-                  ? "28+"
-                  : weeklyHours}
+                {dailyHours
+                  ? dailyHours === 4
+                    ? "28+"
+                    : weeklyHours
+                  : "—"}
               </strong>
 
               <span>
                 hrs / week
               </span>
+
             </div>
 
           </div>
@@ -300,6 +347,7 @@ function DailyPlan() {
                   </div>
 
                 </div>
+
               )
             )}
 
@@ -307,7 +355,9 @@ function DailyPlan() {
 
         </section>
 
-        {/* ESTIMATE */}
+        {/* =========================
+            ESTIMATE
+        ========================= */}
 
         <section className="estimate-card">
 
@@ -317,68 +367,103 @@ function DailyPlan() {
 
           <div className="estimate-content">
 
-            <span>ESTIMATED ROADMAP TIME</span>
+            <span>
+              ESTIMATED ROADMAP TIME
+            </span>
 
             <h2>
-              About {completionWeeks}{" "}
-              {completionWeeks === 1
-                ? "week"
-                : "weeks"}
+
+              {dailyHours
+                ? `About ${completionWeeks} ${
+                    completionWeeks === 1
+                      ? "week"
+                      : "weeks"
+                  }`
+                : "Select your daily time"}
+
             </h2>
 
             <p>
-              At your selected pace of{" "}
-              <strong>
-                {dailyHours === 4
-                  ? "4+ hours"
-                  : `${dailyHours} hour${
-                      dailyHours > 1
-                        ? "s"
-                        : ""
-                    }`}
-              </strong>{" "}
-              per day, you can complete the{" "}
-              <strong>
-                {roadmap.name}
-              </strong>{" "}
-              roadmap in approximately{" "}
-              <strong>
-                {completionDays} days
-              </strong>.
+
+              {dailyHours ? (
+                <>
+                  At your selected pace of{" "}
+
+                  <strong>
+                    {dailyHours === 4
+                      ? "4+ hours"
+                      : `${dailyHours} hour${
+                          dailyHours > 1
+                            ? "s"
+                            : ""
+                        }`}
+                  </strong>{" "}
+
+                  per day, you can complete the{" "}
+
+                  <strong>
+                    {roadmap.name}
+                  </strong>{" "}
+
+                  roadmap in approximately{" "}
+
+                  <strong>
+                    {completionDays} days
+                  </strong>.
+                </>
+              ) : (
+                "Choose how much time you can give each day to see your personalized roadmap estimate."
+              )}
+
             </p>
 
           </div>
 
         </section>
 
-        {/* PRINCIPLE */}
+        {/* =========================
+            PRINCIPLE
+        ========================= */}
 
         <div className="consistency-message">
 
           <div className="message-line"></div>
 
           <div>
-            <span>✦ FUTUREME PRINCIPLE</span>
+
+            <span>
+              ✦ FUTUREME PRINCIPLE
+            </span>
 
             <h3>
               Small progress every day
               <br />
               becomes a different future.
             </h3>
+
           </div>
 
           <div className="message-line"></div>
 
         </div>
 
-        {/* CONTINUE */}
+        {/* =========================
+            CONTINUE
+        ========================= */}
 
         <button
+          type="button"
           className="daily-continue"
           onClick={savePlan}
+          disabled={!dailyHours}
         >
-          Start My Consistency Journey
+
+          {dailyHours
+            ? "Start My Consistency Journey"
+            : "Select Your Daily Time"}
+
           <span>→</span>
+
         </button>
 
       </main>

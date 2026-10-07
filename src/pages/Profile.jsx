@@ -24,9 +24,7 @@ function Profile() {
   const [education, setEducation] = useState("");
 
   // Existing skills preserve chestunnam
-  const [skills, setSkills] = useState(
-    savedProfile.skills || []
-  );
+const [skills, setSkills] = useState([]);
 
   // Existing skill level preserve chestunnam
   const [level, setLevel] = useState(
