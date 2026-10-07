@@ -1,0 +1,355 @@
+.profile-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(157, 78, 221, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 80%, rgba(77, 166, 255, 0.12), transparent 30%),
+    #08070c;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.profile-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 55px 55px;
+  pointer-events: none;
+}
+
+.profile-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.profile-glow-one {
+  width: 300px;
+  height: 300px;
+  background: rgba(180, 72, 255, 0.15);
+  top: 100px;
+  left: -120px;
+}
+
+.profile-glow-two {
+  width: 360px;
+  height: 360px;
+  background: rgba(76, 144, 255, 0.1);
+  bottom: -150px;
+  right: -100px;
+}
+
+.profile-nav {
+  height: 90px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+}
+
+.profile-logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.profile-logo span {
+  color: #d95cff;
+  margin-right: 9px;
+  font-size: 25px;
+}
+
+.profile-step {
+  color: #77727f;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.profile-step strong {
+  color: #d85cff;
+  font-size: 14px;
+}
+
+.profile-container {
+  width: 86%;
+  max-width: 1300px;
+  margin: 30px auto 70px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 70px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-intro {
+  padding-left: 20px;
+}
+
+.profile-overline {
+  color: #d45cff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 22px;
+}
+
+.profile-intro h1 {
+  font-size: clamp(50px, 5vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+  margin: 0 0 28px;
+}
+
+.profile-intro h1 span {
+  color: #d95cff;
+}
+
+.profile-description {
+  color: #aaa4b1;
+  line-height: 1.8;
+  font-size: 15px;
+  max-width: 440px;
+}
+
+.identity-graph {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.graph-node {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.node-one {
+  border-color: rgba(215,85,255,0.65);
+}
+
+.node-two {
+  color: #aaa4b1;
+}
+
+.node-three {
+  color: #d85cff;
+}
+
+.graph-line {
+  width: 65px;
+  height: 1px;
+  background: rgba(216,92,255,0.4);
+}
+
+.profile-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.075),
+    rgba(255,255,255,0.025)
+  );
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  padding: 38px;
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  backdrop-filter: blur(25px);
+}
+
+.profile-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 27px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.profile-card-top span {
+  font-size: 10px;
+  color: #d35aff;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.profile-card-top h2 {
+  margin: 10px 0 0;
+  font-size: 25px;
+}
+
+.profile-card-number {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e76cff;
+  background: rgba(213,84,255,0.13);
+  border: 1px solid rgba(218,93,255,0.25);
+  font-weight: 700;
+}
+
+.profile-field {
+  margin-bottom: 24px;
+}
+
+.profile-field label {
+  display: block;
+  font-size: 10px;
+  color: #c5bfca;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.profile-field input,
+.profile-field select {
+  width: 100%;
+  height: 55px;
+  padding: 0 17px;
+  box-sizing: border-box;
+  color: #f6f3f8;
+  background: rgba(0,0,0,0.36);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 13px;
+  outline: none;
+  font-size: 14px;
+}
+
+.profile-field select option {
+  background: #18151d;
+  color: white;
+}
+
+.profile-field input:focus,
+.profile-field select:focus {
+  border-color: #d65cff;
+}
+
+.profile-two-column {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 15px;
+}
+
+.skill-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skill-chip {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.035);
+  color: #a8a2ad;
+  padding: 9px 13px;
+  border-radius: 9px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.skill-chip.selected {
+  background: rgba(216,92,255,0.14);
+  border-color: #d85cff;
+  color: #f5d8ff;
+}
+
+.skill-check {
+  color: #e477ff;
+  margin-right: 4px;
+}
+
+.level-options {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.level-button {
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  color: #98929d;
+  cursor: pointer;
+}
+
+.level-button.active {
+  color: white;
+  background: rgba(216,92,255,0.18);
+  border-color: #d85cff;
+}
+
+.profile-continue {
+  width: 100%;
+  height: 56px;
+  margin-top: 7px;
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  background: linear-gradient(100deg,#9f3dff,#e04bff);
+}
+
+.profile-continue span {
+  margin-left: 10px;
+  font-size: 17px;
+}
+
+.profile-footer-note {
+  text-align: center;
+  margin-top: 22px;
+  color: #77717d;
+  font-size: 10px;
+}
+
+@media (max-width: 950px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+
+  .profile-intro {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .profile-description {
+    margin: auto;
+  }
+
+  .identity-graph {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-card {
+    padding: 23px;
+  }
+
+  .profile-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .level-options {
+    grid-template-columns: 1fr;
+  }
+}
