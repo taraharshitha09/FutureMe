@@ -27,9 +27,8 @@ function Profile() {
 const [skills, setSkills] = useState([]);
 
   // Existing skill level preserve chestunnam
-  const [level, setLevel] = useState(
-    savedProfile.level || "Beginner"
-  );
+  const [level, setLevel] = useState("");
+
 
   const skillOptions = [
     "Java",
